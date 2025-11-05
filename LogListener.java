@@ -2,10 +2,10 @@ package br.edu.ifpb.padroes;
 
 import java.io.File;
 
-public class LogOpenListener implements EventListener {
+public class LogListener implements EventListener {
     private File log;
 
-    public LogOpenListener(String fileName) {
+    public LogListener(String fileName) {
         this.log = new File(fileName);
     }
 
