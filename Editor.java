@@ -4,11 +4,19 @@ import java.io.File;
 
 public class Editor {
 
-    public EventManager events;
+    private EventManager events;
     private File file;
 
     public Editor() {
         this.events = new EventManager("open", "save");
+    }
+
+    public void subscribe(String eventType, EventListener listener) {
+        events.subscribe(eventType, listener);
+    }
+
+    public void unsubscribe(String eventType, EventListener listener) {
+        events.unsubscribe(eventType, listener);
     }
 
     public void openFile(String filePath) {
