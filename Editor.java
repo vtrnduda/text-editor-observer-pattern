@@ -8,25 +8,25 @@ public class Editor {
     private File file;
 
     public Editor() {
-        this.events = new EventManager("open", "save");
+        this.events = new EventManager(EventType.OPEN, EventType.SAVE);
     }
 
-    public void subscribe(String eventType, EventListener listener) {
+    public void subscribe(EventType eventType, EventListener listener) {
         events.subscribe(eventType, listener);
     }
 
-    public void unsubscribe(String eventType, EventListener listener) {
+    public void unsubscribe(EventType eventType, EventListener listener) {
         events.unsubscribe(eventType, listener);
     }
 
     public void openFile(String filePath) {
         this.file = new File(filePath);
-        events.notify("open", file);
+        events.notify(EventType.OPEN, file);
     }
 
     public void saveFile() throws Exception {
         if (this.file != null) {
-            events.notify("save", file);
+            events.notify(EventType.SAVE, file);
         } else {
             throw new Exception("Please open a file first.");
         }

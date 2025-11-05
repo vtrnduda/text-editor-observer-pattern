@@ -9,26 +9,26 @@ import java.util.Map;
 public class EventManager {
     Map<String, List<EventListener>> listeners = new HashMap<>();
 
-    public EventManager(String... operations) {
-        for (String operation : operations) {
-            this.listeners.put(operation, new ArrayList<>());
+    public EventManager(EventType... operations) {
+        for (EventType operation : operations) {
+            this.listeners.put(operation.getValue(), new ArrayList<>());
         }
     }
 
-    public void subscribe(String eventType, EventListener listener) {
-        List<EventListener> users = listeners.get(eventType);
+    public void subscribe(EventType eventType, EventListener listener) {
+        List<EventListener> users = listeners.get(eventType.getValue());
         users.add(listener);
     }
 
-    public void unsubscribe(String eventType, EventListener listener) {
-        List<EventListener> users = listeners.get(eventType);
+    public void unsubscribe(EventType eventType, EventListener listener) {
+        List<EventListener> users = listeners.get(eventType.getValue());
         users.remove(listener);
     }
 
-    public void notify(String eventType, File file) {
-        List<EventListener> users = listeners.get(eventType);
+    public void notify(EventType eventType, File file) {
+        List<EventListener> users = listeners.get(eventType.getValue());
         for (EventListener listener : users) {
-            listener.update(eventType, file);
+            listener.update(eventType.getValue(), file);
         }
     }
 }
